@@ -73,6 +73,7 @@
         <!-- Level 1: Business Scenario -->
         <div class="level-card active" id="level-1">
           <div class="card">
+            <span class="instruction-badge">Phase 1: Mission Brief</span>
             <div class="manager-avatar">
               <img
                 src="assets/manager.png"
@@ -80,27 +81,38 @@
                 style="width: 100%; height: 100%; object-fit: cover"
               />
             </div>
-            <h2>The High-Tech Mission</h2>
+            <h2>The Executive Brief</h2>
             <p class="story-text">
               Welcome back, Director. Our customer database is growing, but our
               message is getting lost.
               <strong>300 customers</strong> are waiting for a more personal
-              touch. Your mission is to split them into intelligent groups.
+              touch.
             </p>
+
+            <div class="manager-tip">
+              <h4><i data-lucide="info"></i> Manager's Note: The Goal</h4>
+              <p>
+                We are using "Clustering" to group customers based on their
+                <strong>Income</strong> and <strong>Spending habits</strong>.
+                This helps us create tailored advertisements instead of sending
+                the same email to everyone.
+              </p>
+            </div>
+
             <div class="feature-grid">
               <div class="feature-box">
                 <i data-lucide="scan-eye"></i>
                 <h3>Discover</h3>
-                <p>Let the AI scans find patterns you can't see.</p>
+                <p>Find hidden groups in our messy database.</p>
               </div>
               <div class="feature-box">
                 <i data-lucide="shield-check"></i>
                 <h3>Verify</h3>
-                <p>Ensure every marketing dollar hits the right group.</p>
+                <p>Make sure our budget isn't wasted on the wrong people.</p>
               </div>
             </div>
             <button class="btn btn-primary" onclick="nextLevel()">
-              Start Strategy Audit <i data-lucide="chevron-right"></i>
+              Accept Mission <i data-lucide="chevron-right"></i>
             </button>
           </div>
         </div>
@@ -108,28 +120,20 @@
         <!-- Level 2: Feature Exploration -->
         <div class="level-card" id="level-2">
           <div class="card">
-            <h2>Auditing the Raw Data</h2>
+            <span class="instruction-badge">Phase 2: Quality Control</span>
+            <h2>Verify the Evidence</h2>
             <p class="story-text">
-              We are currently tracking three key indicators for every profile.
-              These will be the foundation of our new strategy.
+              Before the AI can help us, we must look at the data ourselves.
+              Every row below is a real person.
             </p>
 
-            <div class="feature-grid">
-              <div class="feature-box">
-                <i data-lucide="database"></i>
-                <h3>Age Scope</h3>
-                <p>From 18 to 75 years old.</p>
-              </div>
-              <div class="feature-box">
-                <i data-lucide="banknote"></i>
-                <h3>Yearly Income</h3>
-                <p>Financial power from $15k to $140k.</p>
-              </div>
-              <div class="feature-box">
-                <i data-lucide="shopping-cart"></i>
-                <h3>Shopping Energy</h3>
-                <p>A score from 1-100 on how often they buy.</p>
-              </div>
+            <div class="manager-tip">
+              <h4><i data-lucide="help-circle"></i> Why do we check data?</h4>
+              <p>
+                In business, garbage data leads to garbage strategy. We are
+                focusing on <strong>Annual Income</strong> (Buying Power) and
+                <strong>Spending Habits</strong> (Engagement Score).
+              </p>
             </div>
 
             <div class="table-container">
@@ -138,7 +142,7 @@
                   <tr>
                     <th>Ref ID</th>
                     <th>Age</th>
-                    <th>Income</th>
+                    <th>Income ($k)</th>
                     <th>Habit Score</th>
                   </tr>
                 </thead>
@@ -147,32 +151,39 @@
                 </tbody>
               </table>
             </div>
-            <button
-              class="btn btn-primary"
-              onclick="nextLevel()"
-              style="margin-top: 2rem"
-            >
-              Data Verified. Proceed.
-            </button>
+            <div style="margin-top: 2rem">
+              <button class="btn btn-primary" onclick="nextLevel()">
+                The Data is Clean. Proceed.
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Level 3: Plot Customers -->
         <div class="level-card" id="level-3">
           <div class="card">
-            <h2>The Big Picture</h2>
+            <span class="instruction-badge">Phase 3: Visual Insight</span>
+            <h2>The Customer Landscape</h2>
             <p class="story-text">
-              Numbers can be overwhelming. But look at this map! When we look at
-              <strong>Income</strong> vs <strong>Shopping Habits</strong>, you
-              can clearly see groups of people naturally clustering together.
+              Each dot below represents one customer. Look at how they are
+              spread across the marketplace.
             </p>
+
+            <div class="manager-tip">
+              <h4><i data-lucide="eye"></i> Look for the Patterns</h4>
+              <p>
+                Look for the "crowds." You'll notice some dots are close
+                together. These are people with similar bank balances and
+                similar habits. These "clusters" are where the profit is hidden.
+              </p>
+            </div>
 
             <div class="visualization-container">
               <canvas id="customerChart"></canvas>
             </div>
 
             <button class="btn btn-primary" onclick="nextLevel()">
-              Organize These Groups
+              Start Intelligent Grouping
             </button>
           </div>
         </div>
@@ -180,12 +191,22 @@
         <!-- Level 4: Choose K / Elbow Method -->
         <div class="level-card" id="level-4">
           <div class="card">
-            <h2>Choose Your Plan</h2>
+            <span class="instruction-badge">Phase 4: Strategic Decision</span>
+            <h2>How many groups?</h2>
             <p class="story-text">
-              How many target groups should we have? Too few, and we treat
-              everyone the same. Too many, and it becomes too expensive to
-              manage.
+              This is the most important part. You must choose how many target
+              groups we should create.
             </p>
+
+            <div class="manager-tip">
+              <h4><i data-lucide="shuffle"></i> The Manager's Dilemma</h4>
+              <p>
+                If you choose <strong>1 group</strong>, it's cheap to manage but
+                too generic. If you choose <strong>8 groups</strong>, it's very
+                precise but too expensive to hire teams for each one. We need
+                the "Sweet Spot."
+              </p>
+            </div>
 
             <div class="cluster-controls">
               <div
@@ -196,7 +217,7 @@
                   margin-bottom: 1rem;
                 "
               >
-                <h3 style="margin: 0">Number of Customer Segments</h3>
+                <h3 style="margin: 0">Proposed Segments</h3>
                 <span
                   id="k-value"
                   style="
@@ -215,8 +236,7 @@
                   margin-top: 1rem;
                 "
               >
-                Slide to choose how many distinct marketing groups you want to
-                create.
+                Slide to choose the number of distinct teams we should deploy.
               </p>
             </div>
 
@@ -229,8 +249,9 @@
                   margin-bottom: 1.5rem;
                 "
               >
-                Look for the "elbow" or corner in the chart — that's the sweet
-                spot where we get the best value for our effort.
+                Look for the "elbow" or corner in the chart — that's the point
+                where adding more groups stops giving us a huge "accuracy
+                boost." <strong>(Usually around K=5 for this data)</strong>.
               </p>
               <div class="elbow-container">
                 <canvas id="elbowChart"></canvas>
@@ -243,7 +264,7 @@
               onclick="runClustering()"
               style="margin-top: 2rem"
             >
-              Apply Grouping Strategy
+              Execute Strategy Audit
             </button>
           </div>
         </div>
@@ -251,12 +272,22 @@
         <!-- Level 5: Visualize Clusters -->
         <div class="level-card" id="level-5">
           <div class="card">
-            <h2>Your New Market Map</h2>
+            <span class="instruction-badge">Phase 5: Output</span>
+            <h2>Your Final Market Map</h2>
             <p class="story-text">
-              Success! The computer has sorted every customer into one of your
-              groups. The <strong>darker icons</strong> on the map represent the
-              "average customer" for that segment.
+              Success! The AI has sorted every customer into one of your groups.
+              The <strong>squares</strong> represent the average profile for
+              that group.
             </p>
+
+            <div class="manager-tip">
+              <h4><i data-lucide="check-circle"></i> Decoding the Colors</h4>
+              <p>
+                Each color is a unique "Persona." We can now write different
+                advertisements for each color, making our marketing feel
+                personal to every customer.
+              </p>
+            </div>
 
             <div class="visualization-container">
               <canvas id="clusterChart"></canvas>
@@ -267,7 +298,7 @@
             </div>
 
             <button class="btn btn-primary" onclick="nextLevel()">
-              View Final Report
+              View Performance Rating
             </button>
           </div>
         </div>
@@ -275,10 +306,11 @@
         <!-- Level 6: Performance Review -->
         <div class="level-card" id="level-6">
           <div class="card" style="text-align: center">
+            <span class="instruction-badge">Phase 6: Final Review</span>
             <h2>Executive Evaluation</h2>
             <p class="story-text">
-              Your segmentation has been evaluated based on its
-              <strong>Precision</strong> vs. <strong>Scalability</strong>.
+              How well did you balance <strong>Accuracy</strong> with
+              <strong>Cost</strong>?
             </p>
 
             <div class="scorecard">
@@ -302,14 +334,14 @@
               style="
                 font-size: 1.1rem;
                 max-width: 500px;
-                margin: 0 auto;
+                margin: 1rem auto;
                 color: var(--text-dim);
               "
             ></p>
 
             <div style="margin-top: 2.5rem">
               <button class="btn btn-outline" onclick="resetGame()">
-                Full Reset <i data-lucide="refresh-cw"></i>
+                Full Reset Simulation <i data-lucide="refresh-cw"></i>
               </button>
             </div>
           </div>

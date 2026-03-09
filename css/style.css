@@ -357,3 +357,52 @@ td {
 .grade-a { background: var(--success); }
 .grade-b { background: var(--accent); }
 .grade-c { background: var(--danger); }
+
+/* Management Education Components */
+.manager-tip {
+  background: #fdf2f8;
+  border-left: 4px solid var(--secondary);
+  padding: 1.5rem;
+  border-radius: 0 16px 16px 0;
+  margin: 1.5rem 0;
+}
+
+.manager-tip h4 {
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.manager-tip p {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.instruction-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.action-required {
+  border-color: var(--primary) !important;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
