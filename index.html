@@ -3,107 +3,143 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer Segmentation Simulator | MBA Analytics</title>
+    <title>Customer Segmentation | Business Admin</title>
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <div>
+    <div class="app-shell">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="brand">
           <h1>
-            Segmentation<span style="color: var(--text-dim)">Simulator</span>
+            Segmentation<br /><span
+              style="
+                font-weight: 300;
+                opacity: 0.7;
+                font-size: 1rem;
+                color: var(--text-dim);
+              "
+              >Business Intelligence</span
+            >
           </h1>
-          <p class="subtitle">Advanced Marketing Strategy Module</p>
         </div>
-        <div class="badge">
-          MISSION PROGRESS: LEVEL <span id="current-level-badge">1</span> / 6
+
+        <nav class="nav-list">
+          <div class="nav-item step active" data-level="1">
+            <span class="step-num">1</span>
+            <span>Executive Brief</span>
+          </div>
+          <div class="nav-item step" data-level="2">
+            <span class="step-num">2</span>
+            <span>Data Audit</span>
+          </div>
+          <div class="nav-item step" data-level="3">
+            <span class="step-num">3</span>
+            <span>Market Groups</span>
+          </div>
+          <div class="nav-item step" data-level="4">
+            <span class="step-num">4</span>
+            <span>Optimal Strategy</span>
+          </div>
+          <div class="nav-item step" data-level="5">
+            <span class="step-num">5</span>
+            <span>Final Sorting</span>
+          </div>
+          <div class="nav-item step" data-level="6">
+            <span class="step-num">6</span>
+            <span>Performance</span>
+          </div>
+        </nav>
+
+        <div
+          style="
+            margin-top: auto;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+          "
+        >
+          <strong>Mission Progress:</strong>
+          <span id="current-level-badge">1</span> of 6
         </div>
-      </header>
+      </aside>
 
-      <div class="stepper">
-        <div class="step active" data-level="1">1</div>
-        <div class="step" data-level="2">2</div>
-        <div class="step" data-level="3">3</div>
-        <div class="step" data-level="4">4</div>
-        <div class="step" data-level="5">5</div>
-        <div class="step" data-level="6">6</div>
-      </div>
-
-      <!-- Level 1: Business Scenario -->
-      <div class="level-card active" id="level-1">
-        <div class="card">
-          <div class="manager-avatar">
-            <img
-              src="assets/manager.png"
-              alt="Manager"
-              style="width: 100%; height: 100%; object-fit: cover"
-            />
-          </div>
-          <h2>The Executive Mandate</h2>
-          <p class="story-text">
-            Our database has grown to <strong>300 active users</strong>, but
-            we've seen a 12% drop in conversion because our marketing is too
-            generic. Management has tasked you with identifying distinct
-            <strong>Customer Clusters</strong> to drive a more personalized
-            strategy.
-          </p>
-          <div class="feature-grid">
-            <div class="feature-box">
-              <i data-lucide="bar-chart-3"></i>
-              <h3>Analyze</h3>
-              <p>Identify hidden patterns in raw customer data.</p>
+      <!-- Main Workspace -->
+      <main class="main-content">
+        <!-- Level 1: Business Scenario -->
+        <div class="level-card active" id="level-1">
+          <div class="card">
+            <div class="manager-avatar">
+              <img
+                src="assets/manager.png"
+                alt="Manager"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
             </div>
-            <div class="feature-box">
-              <i data-lucide="target"></i>
-              <h3>Target</h3>
-              <p>Assign marketing budgets where they yield the highest ROI.</p>
+            <h2>The High-Tech Mission</h2>
+            <p class="story-text">
+              Welcome back, Director. Our customer database is growing, but our
+              message is getting lost.
+              <strong>300 customers</strong> are waiting for a more personal
+              touch. Your mission is to split them into intelligent groups.
+            </p>
+            <div class="feature-grid">
+              <div class="feature-box">
+                <i data-lucide="scan-eye"></i>
+                <h3>Discover</h3>
+                <p>Let the AI scans find patterns you can't see.</p>
+              </div>
+              <div class="feature-box">
+                <i data-lucide="shield-check"></i>
+                <h3>Verify</h3>
+                <p>Ensure every marketing dollar hits the right group.</p>
+              </div>
             </div>
+            <button class="btn btn-primary" onclick="nextLevel()">
+              Start Strategy Audit <i data-lucide="chevron-right"></i>
+            </button>
           </div>
-          <button class="btn btn-primary" onclick="nextLevel()">
-            Begin Strategic Analysis <i data-lucide="arrow-right"></i>
-          </button>
         </div>
-      </div>
 
-      <!-- Level 2: Feature Exploration -->
-      <div class="level-card" id="level-2">
-        <div class="card">
-          <h2>Raw Data Audit</h2>
-          <p class="story-text">
-            Before applying AI, we must audit our feature set. We are tracking
-            three critical economic indicators for every customer profile.
-          </p>
+        <!-- Level 2: Feature Exploration -->
+        <div class="level-card" id="level-2">
+          <div class="card">
+            <h2>Auditing the Raw Data</h2>
+            <p class="story-text">
+              We are currently tracking three key indicators for every profile.
+              These will be the foundation of our new strategy.
+            </p>
 
-          <div class="feature-grid">
-            <div class="feature-box">
-              <i data-lucide="calendar"></i>
-              <h3>Demographics</h3>
-              <p>Age groups range from Gen Z (18) to Baby Boomers (75).</p>
+            <div class="feature-grid">
+              <div class="feature-box">
+                <i data-lucide="database"></i>
+                <h3>Age Scope</h3>
+                <p>From 18 to 75 years old.</p>
+              </div>
+              <div class="feature-box">
+                <i data-lucide="banknote"></i>
+                <h3>Yearly Income</h3>
+                <p>Financial power from $15k to $140k.</p>
+              </div>
+              <div class="feature-box">
+                <i data-lucide="shopping-cart"></i>
+                <h3>Shopping Energy</h3>
+                <p>A score from 1-100 on how often they buy.</p>
+              </div>
             </div>
-            <div class="feature-box">
-              <i data-lucide="credit-card"></i>
-              <h3>Annual Income</h3>
-              <p>Net yearly earnings ranging from $15k to $140k.</p>
-            </div>
-            <div class="feature-box">
-              <i data-lucide="trending-up"></i>
-              <h3>Engagement</h3>
-              <p>Spending Score (1-100) based on purchase frequency.</p>
-            </div>
-          </div>
 
-          <div style="margin-top: 2rem">
-            <h3>Live Data Stream</h3>
-            <div style="overflow-x: auto; margin-top: 1.5rem">
+            <div class="table-container">
               <table id="data-table">
                 <thead>
                   <tr>
                     <th>Ref ID</th>
                     <th>Age</th>
-                    <th>Annual Income</th>
-                    <th>Behavior Score</th>
+                    <th>Income</th>
+                    <th>Habit Score</th>
                   </tr>
                 </thead>
                 <tbody id="table-body">
@@ -111,207 +147,191 @@
                 </tbody>
               </table>
             </div>
-          </div>
-          <button
-            class="btn btn-primary"
-            onclick="nextLevel()"
-            style="margin-top: 2rem"
-          >
-            Confirm Data & Proceed
-          </button>
-        </div>
-      </div>
-
-      <!-- Level 3: Plot Customers -->
-      <div class="level-card" id="level-3">
-        <div class="card">
-          <h2>The Big Picture</h2>
-          <p class="story-text">
-            Numbers can be overwhelming. But look at this map! When we look at
-            <strong>Income</strong> vs <strong>Shopping Habits</strong>, you can
-            clearly see groups of people naturally clustering together.
-          </p>
-
-          <div class="visualization-container">
-            <canvas id="customerChart"></canvas>
-          </div>
-
-          <button class="btn btn-primary" onclick="nextLevel()">
-            Organize These Groups
-          </button>
-        </div>
-      </div>
-
-      <!-- Level 4: Choose K / Elbow Method -->
-      <div class="level-card" id="level-4">
-        <div class="card">
-          <h2>How many groups?</h2>
-          <p class="story-text">
-            As a manager, you must decide: How many target groups should we
-            have? Too few, and we treat everyone the same. Too many, and it
-            becomes too expensive to manage.
-          </p>
-
-          <div class="cluster-controls">
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              "
+            <button
+              class="btn btn-primary"
+              onclick="nextLevel()"
+              style="margin-top: 2rem"
             >
-              <h3 style="margin: 0">Number of Customer Segments</h3>
-              <span
-                id="k-value"
+              Data Verified. Proceed.
+            </button>
+          </div>
+        </div>
+
+        <!-- Level 3: Plot Customers -->
+        <div class="level-card" id="level-3">
+          <div class="card">
+            <h2>The Big Picture</h2>
+            <p class="story-text">
+              Numbers can be overwhelming. But look at this map! When we look at
+              <strong>Income</strong> vs <strong>Shopping Habits</strong>, you
+              can clearly see groups of people naturally clustering together.
+            </p>
+
+            <div class="visualization-container">
+              <canvas id="customerChart"></canvas>
+            </div>
+
+            <button class="btn btn-primary" onclick="nextLevel()">
+              Organize These Groups
+            </button>
+          </div>
+        </div>
+
+        <!-- Level 4: Choose K / Elbow Method -->
+        <div class="level-card" id="level-4">
+          <div class="card">
+            <h2>Choose Your Plan</h2>
+            <p class="story-text">
+              How many target groups should we have? Too few, and we treat
+              everyone the same. Too many, and it becomes too expensive to
+              manage.
+            </p>
+
+            <div class="cluster-controls">
+              <div
                 style="
-                  font-size: 2.5rem;
-                  font-weight: 800;
-                  color: var(--primary);
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
                 "
-                >3</span
               >
+                <h3 style="margin: 0">Number of Customer Segments</h3>
+                <span
+                  id="k-value"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 800;
+                    color: var(--primary);
+                  "
+                  >3</span
+                >
+              </div>
+              <input type="range" id="k-slider" min="2" max="6" value="3" />
+              <p
+                style="
+                  font-size: 0.85rem;
+                  color: var(--text-dim);
+                  margin-top: 1rem;
+                "
+              >
+                Slide to choose how many distinct marketing groups you want to
+                create.
+              </p>
             </div>
-            <input type="range" id="k-slider" min="2" max="6" value="3" />
-            <p style="font-size: 0.9rem; color: var(--text-dim)">
-              Slide to choose how many distinct marketing groups you want to
-              create.
-            </p>
-          </div>
 
-          <div style="margin-top: 3rem">
-            <h3>The Efficiency Guide</h3>
-            <p
-              style="
-                font-size: 1rem;
-                color: var(--text-dim);
-                margin-bottom: 2rem;
-              "
-            >
-              Choosing more groups makes our data more "accurate," but there's a
-              limit. Look for the "elbow" or corner in the chart — that's the
-              sweet spot where we get the best value for our effort.
-            </p>
-            <div
-              style="
-                height: 350px;
-                background: #f8fafc;
-                border-top: 2px solid var(--surface-border);
-                border-radius: 20px;
-                padding: 1rem;
-              "
-            >
-              <canvas id="elbowChart"></canvas>
+            <div style="margin-top: 2.5rem">
+              <h3>The Efficiency Guide</h3>
+              <p
+                style="
+                  font-size: 0.95rem;
+                  color: var(--text-dim);
+                  margin-bottom: 1.5rem;
+                "
+              >
+                Look for the "elbow" or corner in the chart — that's the sweet
+                spot where we get the best value for our effort.
+              </p>
+              <div class="elbow-container">
+                <canvas id="elbowChart"></canvas>
+              </div>
             </div>
-          </div>
 
-          <button
-            class="btn btn-primary"
-            id="run-clustering-btn"
-            onclick="runClustering()"
-            style="margin-top: 3rem"
-          >
-            Execute Segmentation
-          </button>
+            <button
+              class="btn btn-primary"
+              id="run-clustering-btn"
+              onclick="runClustering()"
+              style="margin-top: 2rem"
+            >
+              Apply Grouping Strategy
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Level 5: Visualize Clusters -->
-      <div class="level-card" id="level-5">
-        <div class="card">
-          <h2>Your New Market Map</h2>
-          <p class="story-text">
-            Success! The computer has sorted every customer into one of your
-            groups. The <strong>squares</strong> on the map represent the
-            "average customer" for that segment.
-          </p>
+        <!-- Level 5: Visualize Clusters -->
+        <div class="level-card" id="level-5">
+          <div class="card">
+            <h2>Your New Market Map</h2>
+            <p class="story-text">
+              Success! The computer has sorted every customer into one of your
+              groups. The <strong>darker icons</strong> on the map represent the
+              "average customer" for that segment.
+            </p>
 
-          <div class="visualization-container">
-            <canvas id="clusterChart"></canvas>
+            <div class="visualization-container">
+              <canvas id="clusterChart"></canvas>
+            </div>
+
+            <div id="segment-descriptions" class="feature-grid">
+              <!-- Injected via JS -->
+            </div>
+
+            <button class="btn btn-primary" onclick="nextLevel()">
+              View Final Report
+            </button>
           </div>
-
-          <div id="segment-descriptions" class="feature-grid">
-            <!-- Injected via JS -->
-          </div>
-
-          <button class="btn btn-primary" onclick="nextLevel()">
-            Final Strategy Review
-          </button>
         </div>
-      </div>
 
-      <!-- Level 6: Performance Review -->
-      <div class="level-card" id="level-6">
-        <div class="card">
-          <h2>Operational Performance Review</h2>
-          <p class="story-text">
-            Your segmentation has been evaluated based on its
-            <strong>Precision</strong> (how tight the groups are) vs.
-            <strong>Scalability</strong> (how expensive it is to manage).
-          </p>
+        <!-- Level 6: Performance Review -->
+        <div class="level-card" id="level-6">
+          <div class="card" style="text-align: center">
+            <h2>Executive Evaluation</h2>
+            <p class="story-text">
+              Your segmentation has been evaluated based on its
+              <strong>Precision</strong> vs. <strong>Scalability</strong>.
+            </p>
 
-          <div class="scorecard">
-            <div class="stat-box">
-              <span class="stat-value" id="precision-score">94%</span>
-              <span class="stat-label">Data Accuracy</span>
+            <div class="scorecard">
+              <div class="stat-box">
+                <span class="stat-value" id="precision-score">94%</span>
+                <span class="stat-label">Accuracy</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-value" id="cost-score">$60k</span>
+                <span class="stat-label">Ops Cost</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-value" id="roi-score">82%</span>
+                <span class="stat-label">ROI Score</span>
+              </div>
             </div>
-            <div class="stat-box">
-              <span class="stat-value" id="cost-score">$60k</span>
-              <span class="stat-label">Admin Overhead</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-value" id="roi-score">82%</span>
-              <span class="stat-label">Projected ROI</span>
-            </div>
-          </div>
 
-          <div
-            style="
-              text-align: center;
-              border-top: 1px solid var(--surface-border);
-              padding-top: 3rem;
-              margin-top: 1rem;
-            "
-          >
-            <h3
-              style="
-                color: var(--text-dim);
-                text-transform: uppercase;
-                font-size: 0.8rem;
-                letter-spacing: 0.2em;
-              "
-            >
-              Final Assessment
-            </h3>
             <div id="final-grade" class="grading-badge">A+</div>
             <p
               id="grade-comment"
-              style="font-size: 1.25rem; max-width: 600px; margin: 0 auto"
+              style="
+                font-size: 1.1rem;
+                max-width: 500px;
+                margin: 0 auto;
+                color: var(--text-dim);
+              "
             ></p>
 
-            <div style="margin-top: 3rem">
+            <div style="margin-top: 2.5rem">
               <button class="btn btn-outline" onclick="resetGame()">
-                Restart Strategy <i data-lucide="refresh-cw"></i>
+                Full Reset <i data-lucide="refresh-cw"></i>
               </button>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Global Loader -->
-      <div
-        id="global-loader"
-        class="hidden"
-        style="
-          position: fixed;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-        "
-      >
-        <div class="loader"></div>
-      </div>
+        <!-- Loader Wrapper -->
+        <div
+          id="global-loader"
+          class="hidden"
+          style="
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+          "
+        >
+          <div class="loader"></div>
+        </div>
+      </main>
     </div>
 
     <script src="js/app.js"></script>
