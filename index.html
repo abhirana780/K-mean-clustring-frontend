@@ -125,11 +125,11 @@
       <!-- Level 3: Plot Customers -->
       <div class="level-card" id="level-3">
         <div class="card">
-          <h2>Vector Visualization</h2>
+          <h2>The Big Picture</h2>
           <p class="story-text">
-            Humans are visual creatures. By plotting
-            <strong>Income</strong> against <strong>Engagement</strong>, the
-            "gravity" of customer groups starts to show itself.
+            Numbers can be overwhelming. But look at this map! When we look at
+            <strong>Income</strong> vs <strong>Shopping Habits</strong>, you can
+            clearly see groups of people naturally clustering together.
           </p>
 
           <div class="visualization-container">
@@ -137,7 +137,7 @@
           </div>
 
           <button class="btn btn-primary" onclick="nextLevel()">
-            Deploy K-Means Algorithm
+            Organize These Groups
           </button>
         </div>
       </div>
@@ -145,10 +145,11 @@
       <!-- Level 4: Choose K / Elbow Method -->
       <div class="level-card" id="level-4">
         <div class="card">
-          <h2>The "Elbow" Decision</h2>
+          <h2>How many groups?</h2>
           <p class="story-text">
-            Choosing <strong>'K'</strong> is a critical management decision. Too
-            few clusters lose nuance; too many create operational chaos.
+            As a manager, you must decide: How many target groups should we
+            have? Too few, and we treat everyone the same. Too many, and it
+            becomes too expensive to manage.
           </p>
 
           <div class="cluster-controls">
@@ -159,7 +160,7 @@
                 align-items: center;
               "
             >
-              <h3 style="margin: 0">Number of Segments (K)</h3>
+              <h3 style="margin: 0">Number of Customer Segments</h3>
               <span
                 id="k-value"
                 style="
@@ -172,12 +173,13 @@
             </div>
             <input type="range" id="k-slider" min="2" max="6" value="3" />
             <p style="font-size: 0.9rem; color: var(--text-dim)">
-              Slide to adjust the granularity of your marketing strategy.
+              Slide to choose how many distinct marketing groups you want to
+              create.
             </p>
           </div>
 
           <div style="margin-top: 3rem">
-            <h3>The Cost-Error Curve (Inertia)</h3>
+            <h3>The Efficiency Guide</h3>
             <p
               style="
                 font-size: 1rem;
@@ -185,13 +187,15 @@
                 margin-bottom: 2rem;
               "
             >
-              Look for the "Elbow" — the point where adding more segments
-              provides diminishing returns in data precision.
+              Choosing more groups makes our data more "accurate," but there's a
+              limit. Look for the "elbow" or corner in the chart — that's the
+              sweet spot where we get the best value for our effort.
             </p>
             <div
               style="
                 height: 350px;
-                background: rgba(0, 0, 0, 0.2);
+                background: #f8fafc;
+                border-top: 2px solid var(--surface-border);
                 border-radius: 20px;
                 padding: 1rem;
               "
@@ -214,10 +218,11 @@
       <!-- Level 5: Visualize Clusters -->
       <div class="level-card" id="level-5">
         <div class="card">
-          <h2>Strategic Output</h2>
+          <h2>Your New Market Map</h2>
           <p class="story-text">
-            The algorithm has converged. Every customer is now assigned to a
-            mathematical <strong>Centroid</strong> (the center of the group).
+            Success! The computer has sorted every customer into one of your
+            groups. The <strong>squares</strong> on the map represent the
+            "average customer" for that segment.
           </p>
 
           <div class="visualization-container">
