@@ -322,22 +322,40 @@ function calculateGameScore(k, inertia) {
 
     const gradeEl = document.getElementById('final-grade');
     const commentEl = document.getElementById('grade-comment');
+    const feedbackPanel = document.getElementById('feedback-panel');
     
     gradeEl.className = 'grading-badge';
+    feedbackPanel.style.display = 'block';
     
     if (k === 5) {
         gradeEl.innerText = "A+";
         gradeEl.classList.add('grade-a');
         commentEl.innerText = "Perfect Segmentation! You've captured every natural demographic cluster without over-complicating operations.";
+        feedbackPanel.innerHTML = `
+            <h4><i data-lucide="award"></i> Excellent Strategy</h4>
+            <p>You correctly interpreted the "Elbow Curve". 5 is the optimal number of teams needed to properly target this specific customer base.</p>
+        `;
     } else if (k === 4 || k === 6) {
         gradeEl.innerText = "B";
         gradeEl.classList.add('grade-b');
         commentEl.innerText = k === 4 ? "Good job, but you missed some nuances in customer behavior." : "Effective, but your operational overhead is starting to cut into profits.";
+        feedbackPanel.innerHTML = `
+            <h4><i data-lucide="alert-circle"></i> How to get an A+</h4>
+            <p>Look back at the <strong>Efficiency Curve</strong> in Step 4. You are very close to the "Elbow" (the sharpest turn in the line), but you missed the exact peak. Try adjusting your groups by 1.</p>
+        `;
     } else {
         gradeEl.innerText = "C-";
         gradeEl.classList.add('grade-c');
         commentEl.innerText = "Sub-optimal strategy. Your segments are either too broad to be personal, or too fragmented to be profitable.";
+        
+        let mistake = k < 4 ? "You have too few groups. You are treating completely different customers exactly the same." : "You have too many groups. The marketing teams will be stepping on each other's toes.";
+        
+        feedbackPanel.innerHTML = `
+            <h4><i data-lucide="trending-down"></i> How to fix this</h4>
+            <p>${mistake} When you restart, pay close attention to the <strong>Efficiency Guide chart in Step 4</strong>. The point where the chart "bends" (stops going down so fast) is your ideal number of groups.</p>
+        `;
     }
+    lucide.createIcons();
 }
 
 // Slider handling
