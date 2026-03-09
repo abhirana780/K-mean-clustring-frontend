@@ -13,6 +13,7 @@ lucide.createIcons();
 // --- Scenario Management ---
 function updateScenario() {
     currentScenario = document.getElementById('scenario-select').value;
+    updateDynamicText();
     resetGame();
 }
 
@@ -109,14 +110,6 @@ async function runClustering() {
 // --- Dynamic UI Updaters ---
 
 function updateDynamicText() {
-    if(simulationData.length === 0) return;
-    const f1Name = simulationData[0].Feature1Name;
-    const f2Name = simulationData[0].Feature2Name;
-    
-    // Update table headers
-    document.getElementById('th-feature1').innerText = f1Name;
-    document.getElementById('th-feature2').innerText = f2Name;
-
     const textMap = {
         'marketing': {
             story1: "Welcome, Director. Our operation is scaling, but we need actionable data targeting. <strong>300 customer profiles</strong> are waiting for a more strategic approach.",
@@ -160,6 +153,15 @@ function updateDynamicText() {
         document.getElementById('manager-tip-4').innerHTML = c.tip4;
         document.getElementById('elbow-hint').innerHTML = c.elbow;
         document.getElementById('manager-tip-5').innerHTML = c.tip5;
+    }
+
+    if(simulationData.length > 0) {
+        const f1Name = simulationData[0].Feature1Name;
+        const f2Name = simulationData[0].Feature2Name;
+        
+        // Update table headers
+        document.getElementById('th-feature1').innerText = f1Name;
+        document.getElementById('th-feature2').innerText = f2Name;
     }
 }
 
