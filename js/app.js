@@ -5,7 +5,7 @@ let simulationData = [];
 let customerChart = null;
 let clusterChart = null;
 let elbowChart = null;
-const apiBase = "";
+const apiBase = "https://k-mean-clustring-backend.onrender.com";
 
 // Initialize Lucide icons
 lucide.createIcons();
