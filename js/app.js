@@ -321,7 +321,11 @@ function calculateGameScore(k, inertia) {
         commentEl.innerText = "Effective, but your strategy has minor flaws.";
         feedbackPanel.innerHTML = `
             <h4><i data-lucide="alert-circle"></i> How to get an A+</h4>
-            <p>Look back at the <strong>Efficiency Curve</strong> in Step 4. You are very close to the "Elbow" (the sharpest turn in the line), but you missed the exact peak. Try adjusting your groups by 1.</p>
+            <p style="margin-bottom: 1rem;">Look back at the <strong>Efficiency Curve</strong> in Step 4. You are very close to the "Elbow" (the sharpest turn in the line), but you missed the exact peak. Try adjusting your groups by 1.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button class="btn btn-primary" onclick="retryPhase4()" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i data-lucide="rotate-ccw"></i> Retry Strategy</button>
+                <button class="btn btn-outline" onclick="aiAutoFix()" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i data-lucide="cpu"></i> AI Auto-Fix</button>
+            </div>
         `;
     } else {
         gradeEl.innerText = "C-";
@@ -332,10 +336,40 @@ function calculateGameScore(k, inertia) {
         
         feedbackPanel.innerHTML = `
             <h4><i data-lucide="trending-down"></i> How to fix this</h4>
-            <p>${mistake} When you restart, pay close attention to the <strong>Efficiency Guide chart in Step 4</strong>. Look for the sharpest bend.</p>
+            <p style="margin-bottom: 1rem;">${mistake} When you restart, pay close attention to the <strong>Efficiency Guide chart in Step 4</strong>. Look for the sharpest bend.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button class="btn btn-primary" onclick="retryPhase4()" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i data-lucide="rotate-ccw"></i> Retry Strategy</button>
+                <button class="btn btn-outline" onclick="aiAutoFix()" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i data-lucide="cpu"></i> AI Auto-Fix</button>
+            </div>
         `;
     }
     lucide.createIcons();
+}
+
+// Action Handlers for Feedback Panel
+function retryPhase4() {
+    currentLevel = 4;
+    showLevel(4);
+}
+
+async function aiAutoFix() {
+    let optimalK = 5; // default marketing
+    if (currentScenario === 'hr') optimalK = 3;
+    if (currentScenario === 'product') optimalK = 4;
+    
+    // Animate slider moving to optimal K automatically
+    document.getElementById('k-slider').value = optimalK;
+    document.getElementById('k-value').innerText = optimalK;
+    
+    // Visually jump back to Phase 4 for a moment to show the 'AI' working
+    currentLevel = 4;
+    showLevel(4);
+    document.getElementById('run-clustering-btn').innerHTML = 'AI Executing... <i class="lucide-cpu"></i>';
+    
+    setTimeout(async () => {
+        await runClustering();
+        document.getElementById('run-clustering-btn').innerHTML = 'Execute Strategy Audit <i data-lucide="chevron-right"></i>';
+    }, 1500); // 1.5s delay to let the user see the slider changed automatically
 }
 
 // Slider handling
