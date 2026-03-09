@@ -116,6 +116,51 @@ function updateDynamicText() {
     // Update table headers
     document.getElementById('th-feature1').innerText = f1Name;
     document.getElementById('th-feature2').innerText = f2Name;
+
+    const textMap = {
+        'marketing': {
+            story1: "Welcome, Director. Our operation is scaling, but we need actionable data targeting. <strong>300 customer profiles</strong> are waiting for a more strategic approach.",
+            tip1: "We are using 'Clustering' to group customers based on their <strong>Income</strong> and <strong>Spending habits</strong>. This helps us create tailored advertisements instead of sending the same email to everyone.",
+            f1: "Find hidden spending groups in our database.",
+            f2: "Make sure our ad budget isn't wasted on the wrong people.",
+            tip3: "Look for the 'crowds.' You'll notice some dots are close together. These are people with similar bank balances and similar habits. These 'clusters' are where the profit is hidden.",
+            tip4: "If you choose <strong>1 group</strong>, it's cheap to manage but too generic. If you choose <strong>8 groups</strong>, it's very precise but too expensive to organize marketing campaigns. We need the 'Sweet Spot.'",
+            elbow: "Look for the 'elbow' or corner in the chart — that's the point where adding more groups stops giving us a huge 'accuracy boost.' <strong>(Usually around K=5 for Marketing data)</strong>.",
+            tip5: "Each color is a unique 'Persona.' We can now write different advertisements for each color, making our marketing feel personal to every customer."
+        },
+        'hr': {
+            story1: "Welcome, HR Director. Employee turnover is accelerating. We have <strong>300 employee records</strong> to analyze to understand burnout and retention.",
+            tip1: "We are using 'Clustering' based on <strong>Monthly Hours</strong> vs <strong>Satisfaction Score</strong> to find distinct groups of employees requiring different retention strategies.",
+            f1: "Identify flight-risk departments naturally.",
+            f2: "Ensure wellness initiatives target the right staff.",
+            tip3: "Look for the 'crowds.' Notice the separation between highly overworked staff versus underutilized unhappy staff. These groups require totally different HR interventions.",
+            tip4: "1 global HR policy will anger everyone. 10 separate HR policies is an administrative nightmare. We need the perfect middle ground to group our workforce.",
+            elbow: "Look for the 'elbow' or corner in the chart. Adding infinite HR policies doesn't help materially. <strong>(Usually around K=3 for this HR data)</strong>.",
+            tip5: "Each color is a different employee risk profile (e.g., At-Risk Workaholics, Core Happy Staff). We can now design targeted HR interventions."
+        },
+        'product': {
+            story1: "Welcome, Product Lead. We have <strong>300 distinct SKUs</strong> in our catalog, and pricing strategy is becoming chaotic.",
+            tip1: "We are clustering our products based on <strong>Price Point</strong> vs <strong>Sales Volume</strong> to restructure our catalog into distinct strategic portfolios (like 'Luxury' vs 'Cash Cows').",
+            f1: "Discover hidden product portfolios.",
+            f2: "Prevent under-pricing of premium volume goods.",
+            tip3: "Look for the 'crowds.' You'll see distinct groupings—high volume/low price goods separated from exclusive luxury low-volume items.",
+            tip4: "Too few pricing tiers leaves money on the table. Too many creates extreme supply chain complexity. What is the optimal number of catalog groups?",
+            elbow: "Look for the 'elbow' in the chart. Beyond this point, splitting up product categories gives diminishing returns. <strong>(Usually around K=4 for this SKU data)</strong>.",
+            tip5: "Each color represents a distinct product portfolio. We can now assign dedicated category managers to handle the sourcing for each group."
+        }
+    };
+
+    const c = textMap[currentScenario];
+    if(c) {
+        document.getElementById('story-text-1').innerHTML = c.story1;
+        document.getElementById('manager-tip-1').innerHTML = c.tip1;
+        document.getElementById('feature-1-desc').innerHTML = c.f1;
+        document.getElementById('feature-2-desc').innerHTML = c.f2;
+        document.getElementById('manager-tip-3').innerHTML = c.tip3;
+        document.getElementById('manager-tip-4').innerHTML = c.tip4;
+        document.getElementById('elbow-hint').innerHTML = c.elbow;
+        document.getElementById('manager-tip-5').innerHTML = c.tip5;
+    }
 }
 
 function populateTable() {
@@ -353,9 +398,17 @@ function retryPhase4() {
 }
 
 async function aiAutoFix() {
-    let optimalK = 5; // default marketing
-    if (currentScenario === 'hr') optimalK = 3;
-    if (currentScenario === 'product') optimalK = 4;
+    let optimalK = 5; 
+    let explanation = "The AI selected 5 groups because it hits the perfect 'elbow' point: any fewer, and you arbitrarily mix distinct customer demographics. Any more, and the extra ad spend isn't worth the minor precision gain.";
+    
+    if (currentScenario === 'hr') {
+        optimalK = 3;
+        explanation = "The AI selected 3 groups because it identified exactly three clear employee personas: overworked/burnt out, happy/core, and underutilized. More groups would just cause HR policy confusion.";
+    }
+    if (currentScenario === 'product') {
+        optimalK = 4;
+        explanation = "The AI selected 4 portfolios. Adding a 5th pricing tier requires massive supply chain reorganization that doesn't significantly lower the mathematical variance of the groups.";
+    }
     
     // Animate slider moving to optimal K automatically
     document.getElementById('k-slider').value = optimalK;
@@ -369,7 +422,16 @@ async function aiAutoFix() {
     setTimeout(async () => {
         await runClustering();
         document.getElementById('run-clustering-btn').innerHTML = 'Execute Strategy Audit <i data-lucide="chevron-right"></i>';
+        
+        // Target modal injection
+        document.getElementById('ai-modal-content').innerText = explanation;
+        document.getElementById('ai-modal').classList.remove('hidden');
+        
     }, 1500); // 1.5s delay to let the user see the slider changed automatically
+}
+
+function closeAiModal() {
+    document.getElementById('ai-modal').classList.add('hidden');
 }
 
 // Slider handling
