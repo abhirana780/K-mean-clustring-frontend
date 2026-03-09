@@ -141,19 +141,23 @@ function renderCustomerChart() {
             datasets: [{
                 label: 'Customers',
                 data: dataPoints,
-                backgroundColor: 'rgba(99, 102, 241, 0.4)',
-                borderColor: '#6366f1',
+                backgroundColor: 'rgba(79, 70, 229, 0.4)',
+                borderColor: '#4f46e5',
                 borderWidth: 2,
                 pointRadius: 6,
-                pointHoverRadius: 10
+                pointHoverRadius: 10,
+                pointBackgroundColor: '#fff'
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, title: { display: true, text: 'Annual Income ($k)' } },
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, title: { display: true, text: 'Spending Score (1-100)' } }
+                x: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Annual Income ($k)', font: { weight: 'bold' } } },
+                y: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Spending Score (1-100)', font: { weight: 'bold' } } }
+            },
+            plugins: {
+                legend: { labels: { font: { weight: 'bold' } } }
             }
         }
     });
@@ -168,24 +172,34 @@ function renderElbowChart(wcss) {
         data: {
             labels: [1,2,3,4,5,6,7,8,9,10],
             datasets: [{
-                label: 'Sum of Squared Distances (WCSS)',
+                label: 'WCSS (Inertia)',
                 data: wcss,
-                borderColor: '#a855f7',
-                backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                borderColor: '#7c3aed',
+                backgroundColor: 'rgba(124, 58, 237, 0.05)',
                 fill: true,
                 tension: 0.4,
-                borderWidth: 3,
+                borderWidth: 4,
                 pointBackgroundColor: '#fff',
-                pointRadius: 5
+                pointBorderColor: '#7c3aed',
+                pointBorderWidth: 2,
+                pointRadius: 6,
+                pointHoverRadius: 9
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
+            plugins: { 
+                legend: { display: false },
+                tooltip: { 
+                    backgroundColor: '#1e293b',
+                    padding: 12,
+                    titleFont: { size: 14 }
+                }
+            },
             scales: {
-                x: { grid: { display: false }, title: { display: true, text: 'Number of Clusters (K)' } },
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, title: { display: true, text: 'WCSS' } }
+                x: { grid: { display: false }, title: { display: true, text: 'Number of Clusters (K)', font: { weight: 'bold' } } },
+                y: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Inertia Score', font: { weight: 'bold' } } }
             }
         }
     });
@@ -195,7 +209,7 @@ function renderClusterChart(labels, centers) {
     const ctx = document.getElementById('clusterChart').getContext('2d');
     if (clusterChart) clusterChart.destroy();
 
-    const colors = ['#ef4444', '#22c55e', '#f59e0b', '#a855f7', '#06b6d4', '#ec4899'];
+    const colors = ['#f43f5e', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ec4899'];
 
     const datasets = [];
     centers.forEach((center, i) => {
@@ -207,20 +221,22 @@ function renderClusterChart(labels, centers) {
         datasets.push({
             label: `Segment ${i + 1}`,
             data: clusterPoints,
-            backgroundColor: `${colors[i % colors.length]}88`,
+            backgroundColor: `${colors[i % colors.length]}aa`,
             borderColor: colors[i % colors.length],
-            borderWidth: 1,
-            pointRadius: 5
+            borderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 9,
+            pointBackgroundColor: '#fff'
         });
     });
 
     datasets.push({
         label: 'Centroids',
         data: centers.map(c => ({ x: c[0], y: c[1] })),
-        backgroundColor: '#fff',
-        borderColor: '#6366f1',
+        backgroundColor: '#1e293b',
+        borderColor: '#fff',
         pointStyle: 'rectRot',
-        pointRadius: 12,
+        pointRadius: 14,
         borderWidth: 3,
         showLine: false
     });
@@ -232,8 +248,11 @@ function renderClusterChart(labels, centers) {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: { grid: { color: 'rgba(255,255,255,0.05)' }, title: { display: true, text: 'Income' } },
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, title: { display: true, text: 'Spending' } }
+                x: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Income ($k)', font: { weight: 'bold' } } },
+                y: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Spending Score', font: { weight: 'bold' } } }
+            },
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, font: { weight: 'bold' } } }
             }
         }
     });
