@@ -407,6 +407,10 @@ td:last-child {
   100% { transform: rotate(360deg); }
 }
 
+.hidden {
+  display: none !important;
+}
+
 .manager-avatar {
   width: 120px;
   height: 120px;
